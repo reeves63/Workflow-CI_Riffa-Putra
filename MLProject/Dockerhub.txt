@@ -1,0 +1,4 @@
+Dockerhub Link: https://hub.docker.com/repository/docker/reeves63/diabetes-prediction
+
+(Karena DockerHub sedang ada trouble, belum ada apapun yang muncul di tab 'Tags')
+"Users are experiencing that new push don't reflect on the UI in the repos list on Hub, as well as tags operations failing - The team is continuing to work on implementing the fix to listing new repos and tags in the UI."
