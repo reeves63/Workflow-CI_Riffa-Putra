@@ -103,7 +103,7 @@ def train_model(X_train, X_test, y_train, y_test, experiment_name="Diabetes-Pred
     print("="*80)
     
     # Set MLflow experiment
-    mlflow.set_experiment(experiment_name)
+    # mlflow.set_experiment(experiment_name)
     
     # Enable autolog for sklearn
     mlflow.sklearn.autolog(log_input_examples=True, log_model_signatures=True)
@@ -215,4 +215,5 @@ def main():
 
 
 if __name__ == "__main__":
+
     main()
