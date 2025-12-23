@@ -135,7 +135,7 @@ jobs:
     - name: Build Docker Image
       run: |
         mlflow models build-docker \
-          -m "mlruns/1/${{ env.RUN_ID }}/artifacts/model" \
+          -m "runs:/${{ env.RUN_ID }}/model" \
           -n "diabetes-prediction-model" \
           --enable-mlserver
 
