@@ -136,7 +136,7 @@ jobs:
       run: |
         mlflow models build-docker \
           -m "runs:/${{ env.RUN_ID }}/model" \
-          -n "diabetes-prediction-model" \
+          -n "diabetes-prediction" \
           --enable-mlserver
 
     - name: Log in to Docker Hub
@@ -148,10 +148,12 @@ jobs:
     - name: Tag Docker Image
       run: |
         TIMESTAMP=$(date +%Y%m%d-%H%M%S)
-        IMAGE_NAME="${{ secrets.DOCKERHUB_USERNAME }}/diabetes-prediction-model"
+        # PERBAIKAN: Menggunakan nama repo 'diabetes-prediction'
+        IMAGE_NAME="${{ secrets.DOCKERHUB_USERNAME }}/diabetes-prediction"
         
-        docker tag diabetes-prediction-model:latest $IMAGE_NAME:latest
-        docker tag diabetes-prediction-model:latest $IMAGE_NAME:$TIMESTAMP
+        # PERBAIKAN: Tag dari source image 'diabetes-prediction'
+        docker tag diabetes-prediction:latest $IMAGE_NAME:latest
+        docker tag diabetes-prediction:latest $IMAGE_NAME:$TIMESTAMP
         
         echo "DOCKER_TAG_LATEST=$IMAGE_NAME:latest" >> $GITHUB_ENV
         echo "DOCKER_TAG_TIME=$IMAGE_NAME:$TIMESTAMP" >> $GITHUB_ENV
@@ -163,7 +165,8 @@ jobs:
 
     - name: Create Docker Link File
       run: |
-        echo "Docker Hub Repository: https://hub.docker.com/r/${{ secrets.DOCKERHUB_USERNAME }}/diabetes-prediction-model" > Tautan_ke_Docker_Hub.txt
+        # PERBAIKAN: Link mengarah ke repo 'diabetes-prediction'
+        echo "Docker Hub Repository: https://hub.docker.com/r/${{ secrets.DOCKERHUB_USERNAME }}/diabetes-prediction" > Tautan_ke_Docker_Hub.txt
         echo "Pull Command: docker pull ${{ env.DOCKER_TAG_LATEST }}" >> Tautan_ke_Docker_Hub.txt
 
     - name: Upload Docker Link Artifact
